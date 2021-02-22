@@ -34,9 +34,12 @@ public class EntityManagerTest {
             User found = manager.find(User.class, user.getId());
             Assert.assertNotNull(found);
 
-            manager.refresh(found);
-            manager.remove(found);
+            manager.getTransaction().commit();
 
+            manager.refresh(found);
+
+            manager.getTransaction().begin();
+            manager.remove(found);
             manager.getTransaction().commit();
         } finally {
             manager.close();
