@@ -1,5 +1,6 @@
 package ru.levelp;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.levelp.model.Part;
 import org.levelp.model.Storage;
@@ -29,6 +30,12 @@ public class EntityManagerTest {
 
             manager.persist(storage);
             manager.persist(p);
+
+            User found = manager.find(User.class, user.getId());
+            Assert.assertNotNull(found);
+
+            manager.refresh(found);
+            manager.remove(found);
 
             manager.getTransaction().commit();
         } finally {
