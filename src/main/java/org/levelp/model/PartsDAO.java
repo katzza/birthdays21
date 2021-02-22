@@ -38,14 +38,14 @@ public class PartsDAO {
                 .getResultList();
     }
 
-//    public List<Part> findAllSortedBy(String columnName) {
-//        CriteriaBuilder builder = manager.getCriteriaBuilder();
-//
-//        CriteriaQuery<Part> query = builder.createQuery(Part.class);
-//        Root<Part> fromPart = query.from(Part.class);
-//
-//        query.orderBy(builder.asc(fromPart.get(columnName)));
-//
-//        query.select(fromPart)
-//    }
+    public List<Part> findAllSortedBy(String columnName) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<Part> query = builder.createQuery(Part.class);
+        Root<Part> fromPart = query.from(Part.class);
+
+        query.orderBy(builder.asc(fromPart.get(columnName)));
+
+        return manager.createQuery(query).getResultList();
+    }
 }
