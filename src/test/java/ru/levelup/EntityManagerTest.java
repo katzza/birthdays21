@@ -1,4 +1,4 @@
-package ru.levelp;
+package ru.levelup;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class EntityManagerTest {
 
         try {
             manager.getTransaction().begin();
-            User user = new User("test", "aaa", true);
+            User user = new User("login", "password1", true);
             manager.persist(user);
 
             Storage storage = new Storage("Some storage");

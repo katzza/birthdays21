@@ -1,0 +1,77 @@
+Main idea:
+
+The app stores a list of birthdays and sends a birthday reminder to certain persons by email
+
+Roles:
+1.Admin
+Grants:
+- сreate of users
+- edit users
+- also user-grants
+2.User
+Grants:
+- update own profile
+- create and update the info of birthday-children
+- see list of birthday-children
+- set new password
+
+1. Login:
+- User visits the main page
+- makes login with correct data
+- Startpage-form opens
+- Functions available:
+1. Add birthday child
+2. Open birthday children list
+3. Edit own profile
+4.*If user has admin rights: Open list of users
+
+2. Add birthday child
+Preconditons: user pressed button 'Add birthday child' on form Startpage
+- New birthday child form opens
+Fields available, fields with * = required:
+Name*
+Lastname*
+Team
+Birthday*
+Sex*
+Info
+is kind fairy: default no
+when is kind fairy =yes : login
+retired (default-no)
+Buttons:
+-OK (check required fields and save new data to database, then back to main page)
+-Cancel (back to main page without saving data)
+-Update (check required fields and save new data to database, then back to main page)
+
+3. Open birthday children list
+Preconditons: user pressed button 'Open birthday children list' on form Startpage
+- List of birthday children (Form Birthday children) opens with columns
+Team | Name | Lastname | Sex | Birthday | Info | isKindFairy
+Functions available:
+
+- Select users by Team or Sex, display number
+- Sort users by Birthday
+- Highlight the user and press 'Update'
+
+4. Edit birthday child
+Preconditons: user pressed button 'Update' on form Birthday children
+Birthday child form opens, options like usecase2
+
+5. Edit own profile
+Preconditons: user pressed button 'Edit profile' on form Startpage
+'User' form of current user opens, fields to update:
+password, team, email1, email2
+
+6. Open list of users
+Preconditons: user = admin and pressed button 'Users' on form Startpage
+- List of users (Form Users) opens with columns
+Login | Team
+Functions:
+- add user (login, password, team, email1, email2, birthdaychild, isAdmin (default-no))
+- edit user
+
+
+
+
+
+
