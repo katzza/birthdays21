@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Users")
 @NamedQueries({
-        @NamedQuery(name = "findByIsAdmin", query = "from User where isAdmin = :isAdmin"),
+        @NamedQuery(name = "findByIsAdmin", query = "from User where isAdmin = :isAdmin"), //UsersDAO, method findByIsAdmin
 })
 public class User {
     @Id

@@ -37,7 +37,7 @@ public class UsersDAO {
     }
 
     public List<User> findByIsAdmin(boolean isAdmin) {
-        return manager.createNamedQuery("findByIsAdmin", User.class)
+        return manager.createNamedQuery("findByIsAdmin", User.class)  //annotation in class User
                 .setParameter("isAdmin", isAdmin)
                 .getResultList();
     }
