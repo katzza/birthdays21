@@ -68,9 +68,9 @@ public class UsersDAOTest {
     }
 
 
-  /*  @Test //todo after fix
+    @Test //todo after fix
     public void findByIsAdmin() {
         assertEquals(user, usersDAO.findByIsAdmin(false).get(0).getLogin());
         assertTrue(usersDAO.findByIsAdmin(true).isEmpty());
-    }*/
+    }
 }
