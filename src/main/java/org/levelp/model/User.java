@@ -7,9 +7,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Users")
-/*@NamedQueries({
+@NamedQueries({
         @NamedQuery(name = "findByIsAdmin", query = "from User where isAdmin = :isAdmin"),
-})*/
+})
 public class User {
     @Id
     @GeneratedValue
@@ -22,7 +22,7 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private boolean isAdmin = false;
+    private boolean isAdmin;
 
     @Column(length = 50)
     private String email;
