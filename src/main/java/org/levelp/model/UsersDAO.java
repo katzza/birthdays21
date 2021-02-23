@@ -38,7 +38,7 @@ public class UsersDAO {
     }
 
     public List<User> findByIsAdmin(boolean isAdmin) {
-        return manager.createNamedQuery("findByIsAdmin", User.class)
+        return manager.createNamedQuery("findByIsAdmin", User.class) //todo fix it
                 .setParameter("isAdmin", isAdmin)
                 .getResultList();
     }
