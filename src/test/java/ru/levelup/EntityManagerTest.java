@@ -1,4 +1,4 @@
-package ru.levelp;
+package ru.levelup;
 
 import org.junit.Test;
 import org.levelp.model.User;
