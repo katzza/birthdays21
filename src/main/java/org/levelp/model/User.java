@@ -2,24 +2,37 @@ package org.levelp.model;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "User")
+@Table(name = "Users")
+/*@NamedQueries({
+        @NamedQuery(name = "findByIsAdmin", query = "from User where isAdmin = :isAdmin"),
+})*/
 public class User {
     @Id
     @GeneratedValue
     private int id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 30)
     private String login;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 15)
     private String password;
 
     @Column(nullable = false)
-    private boolean isAdmin;
+    private boolean isAdmin = false;
 
-    @Transient
-    private String test;
+    @Column(length = 50)
+    private String email;
+
+    @Convert(converter = TeamConverter.class)
+    private Team team = Team.FAIRY;
+
+    //todo   @Column(nullable = false, length = 50) // тут связь 1:1
+    //    private String birthdaychild;
+
+    @Transient //@Transient аннотация JPA используется для обозначения того, что поле не должно сохраняться в базе данных
+    private String notForDb;
 
     public User() {
     }
@@ -61,4 +74,22 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) { //todo fix it with converter
+        this.team = team;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

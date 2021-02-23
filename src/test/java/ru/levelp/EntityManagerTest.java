@@ -18,7 +18,7 @@ public class EntityManagerTest {
 
         try {
             manager.getTransaction().begin();
-            User user = new User("test", "aaa", true);
+            User user = new User("login", "password1", true);
             manager.persist(user);
             manager.getTransaction().commit();
         } finally {
