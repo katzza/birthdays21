@@ -37,14 +37,6 @@ public class UsersDAO {
         }
     }
 
-    public List<User> findByBirthDate(Date referenceDate) {
-        return manager.createQuery(
-                "from User where birthDate <= :date",
-                User.class
-        ).setParameter("date", referenceDate)
-                .getResultList();
-    }
-
     public List<User> findByIsAdmin(boolean isAdmin) {
         return manager.createNamedQuery("findByIsAdmin", User.class)
                 .setParameter("isAdmin", isAdmin)

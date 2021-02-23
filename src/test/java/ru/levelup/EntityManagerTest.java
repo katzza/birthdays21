@@ -2,8 +2,6 @@ package ru.levelup;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.levelp.model.Part;
-import org.levelp.model.Storage;
 import org.levelp.model.User;
 
 import javax.persistence.EntityManager;
@@ -21,15 +19,8 @@ public class EntityManagerTest {
 
         try {
             manager.getTransaction().begin();
-            User user = new User("login", "password1", true);
+            User user = new User("testuser1", "password1", true);
             manager.persist(user);
-
-            Storage storage = new Storage("Some storage");
-            Part p = new Part("test-part", "Test part");
-            p.setStorage(storage);
-
-            manager.persist(storage);
-            manager.persist(p);
 
             User found = manager.find(User.class, user.getId());
             Assert.assertNotNull(found);

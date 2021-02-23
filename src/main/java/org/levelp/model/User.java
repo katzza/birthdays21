@@ -1,35 +1,40 @@
 package org.levelp.model;
 
+import org.levelp.model.Team;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "Users")
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(name = "findByIsAdmin", query = "from User where isAdmin = :isAdmin"),
-})
+})*/
 public class User {
     @Id
     @GeneratedValue
     private int id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 30)
     private String login;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 15)
     private String password;
 
     @Column(nullable = false)
-    private boolean isAdmin;
+    private boolean isAdmin = false;
 
-    @Temporal(TemporalType.DATE)
-    private Date birthDate;
+    @Column(length = 50)
+    private String email;
 
-    @Convert(converter = UserStatusConverter.class)
-    private UserStatus status = UserStatus.UNCONFIRMED;
+    @Convert(converter = TeamConverter.class)
+    private Team team = Team.FAIRY;
 
-    @Transient
-    private String test;
+    //todo   @Column(nullable = false, length = 50) // тут связь 1:1
+    //    private String birthdaychild;
+
+    @Transient //@Transient аннотация JPA используется для обозначения того, что поле не должно сохраняться в базе данных
+    private String notForDb;
 
     public User() {
     }
@@ -72,19 +77,21 @@ public class User {
         isAdmin = admin;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setTeam(Team team) { //todo fix it with converter
+        this.team = team;
     }
 
-    public UserStatus getStatus() {
-        return status;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setStatus(UserStatus status) {
-        this.status = status;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
 }

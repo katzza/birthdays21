@@ -18,7 +18,8 @@ public class UsersDAOTest {
     private EntityManagerFactory factory;
     private EntityManager manager;
     private UsersDAO usersDAO;
-    private Date now = new Date();
+    private final String user = "testuser1";
+    private final String password = "password1";
 
     @Before
     public void configure() {
@@ -28,8 +29,7 @@ public class UsersDAOTest {
         manager = factory.createEntityManager();
         usersDAO = new UsersDAO(manager);
 
-        User newUser = new User("login777", "pass", false);
-        newUser.setBirthDate(now);
+        User newUser = new User(user, password, false);
         manager.getTransaction().begin();
         manager.persist(newUser);
         manager.getTransaction().commit();
@@ -49,36 +49,28 @@ public class UsersDAOTest {
     public void findByLogin() {
         assertNull(usersDAO.findByLogin("non existing user"));
 
-        User found = usersDAO.findByLogin("login777");
+        User found = usersDAO.findByLogin(user);
         assertNotNull(found);
-        assertEquals("login777", found.getLogin());
+        assertEquals(user, found.getLogin());
     }
 
     @Test
     public void findByLoginAndPassword() {
-        assertNull(usersDAO.findByLoginAndPassword("some user", "ppp"));
-        assertNull(usersDAO.findByLoginAndPassword("login777", "pass1"));
+        assertNull(usersDAO.findByLoginAndPassword(user, ""));
+        assertNull(usersDAO.findByLoginAndPassword(user, "ppp"));
+        assertNull(usersDAO.findByLoginAndPassword(user, "pass1"));
+        assertNull(usersDAO.findByLoginAndPassword("user", password));
 
-        User found = usersDAO.findByLoginAndPassword("login777", "pass");
+        User found = usersDAO.findByLoginAndPassword(user, password);
         assertNotNull(found);
-        assertEquals("login777", found.getLogin());
-        assertEquals("pass", found.getPassword());
+        assertEquals(user, found.getLogin());
+        assertEquals(password, found.getPassword());
     }
 
-    @Test
-    public void findByBirthDate() {
-        List<User> foundByNow = usersDAO.findByBirthDate(now);
-        assertEquals(1, foundByNow.size());
-        assertEquals("login777", foundByNow.get(0).getLogin());
-
-        Date dateBefore = new Date(now.getTime() - 100000000);
-        List<User> foundBefore = usersDAO.findByBirthDate(dateBefore);
-        assertEquals(0, foundBefore.size());
-    }
 
     @Test
     public void findByIsAdmin() {
-        assertEquals("login777", usersDAO.findByIsAdmin(false).get(0).getLogin());
+        assertEquals(user, usersDAO.findByIsAdmin(false).get(0).getLogin());
         assertTrue(usersDAO.findByIsAdmin(true).isEmpty());
     }
 }
