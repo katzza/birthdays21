@@ -25,8 +25,8 @@ public class User {
     @Column(length = 50)
     private String email;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "user")
-    private BirthdayChild birthdaychild;
+  /*  @OneToOne(fetch = FetchType.EAGER, mappedBy = "user")
+    private BirthdayChild birthdaychild;*/
 
     @Transient //@Transient аннотация JPA используется для обозначения того, что поле не должно сохраняться в базе данных
     private String notForDb;
