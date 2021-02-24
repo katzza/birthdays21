@@ -19,7 +19,7 @@ public class EntityManagerTest {
 
         try {
             manager.getTransaction().begin();
-            User user = new User("testuser1", "password1", true);
+            User user = new User("testuser1", "password1", "ee@mail.com", true);
             manager.persist(user);
 
             User found = manager.find(User.class, user.getId());

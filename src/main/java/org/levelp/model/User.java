@@ -1,14 +1,12 @@
 package org.levelp.model;
 
-import org.levelp.model.Team;
-
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "Users")
 @NamedQueries({
         @NamedQuery(name = "findByIsAdmin", query = "from User where isAdmin = :isAdmin"), //UsersDAO, method findByIsAdmin
+        @NamedQuery(name = "findAllUsers", query = "from User order by login asc"),
 })
 public class User {
     @Id
@@ -27,11 +25,8 @@ public class User {
     @Column(length = 50)
     private String email;
 
-    @Convert(converter = TeamConverter.class)
-    private Team team = Team.FAIRY;
-
-    //todo   @Column(nullable = false, length = 50) // тут связь 1:1
-    //    private String birthdaychild;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "user")
+    private BirthdayChild birthdaychild;
 
     @Transient //@Transient аннотация JPA используется для обозначения того, что поле не должно сохраняться в базе данных
     private String notForDb;
@@ -39,9 +34,10 @@ public class User {
     public User() {
     }
 
-    public User(String login, String password, boolean isAdmin) {
+    public User(String login, String password, String email, boolean isAdmin) {
         this.login = login;
         this.password = password;
+        this.email = email;
         this.isAdmin = isAdmin;
     }
 
@@ -75,14 +71,6 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) { //todo fix it with converter
-        this.team = team;
     }
 
 

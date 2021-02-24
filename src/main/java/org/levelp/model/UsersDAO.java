@@ -41,4 +41,9 @@ public class UsersDAO {
                 .setParameter("isAdmin", isAdmin)
                 .getResultList();
     }
+
+    public List<User> findAllUsers() {
+        return manager.createNamedQuery("findAllUsers", User.class)
+                .getResultList();
+    }
 }

@@ -33,7 +33,6 @@ Name*
 Lastname*
 Team
 Birthday*
-Sex*
 Info
 is kind fairy: default no
 when is kind fairy =yes : login
@@ -46,10 +45,10 @@ Buttons:
 3. Open birthday children list
 Preconditons: user pressed button 'Open birthday children list' on form Startpage
 - List of birthday children (Form Birthday children) opens with columns
-Team | Name | Lastname | Sex | Birthday | Info | isKindFairy
+Team | Name | Lastname | Birthday | Info | isKindFairy
 Functions available:
 
-- Select users by Team or Sex, display number
+- Select users by Team display number
 - Sort users by Birthday
 - Highlight the user and press 'Update'
 
