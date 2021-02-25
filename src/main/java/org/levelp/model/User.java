@@ -25,8 +25,9 @@ public class User {
     @Column(length = 50)
     private String email;
 
-  /*  @OneToOne(fetch = FetchType.EAGER, mappedBy = "user")
-    private BirthdayChild birthdaychild;*/
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn   //указывает на то, что первичный ключ этой сущности используется в качестве внешнего ключа для связи с другой сущностью
+    private BirthdayChild birthdayChild;
 
     @Transient //@Transient аннотация JPA используется для обозначения того, что поле не должно сохраняться в базе данных
     private String notForDb;
@@ -80,6 +81,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    private BirthdayChild getBirthdayChild(){
+        return this.birthdayChild;
+    };
+
+    public void setBirthdayChild(BirthdayChild birthdayChild) {
+        this.birthdayChild = birthdayChild;
     }
 
 }

@@ -30,6 +30,9 @@ public class BirthdayChild {
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
+    @OneToOne(mappedBy = "birthdayChild") //колонка сущности, с которой соединение
+    private User user;        //объект необязат класса, его может и не быть
+
     public BirthdayChild() {
     }
 
