@@ -1,6 +1,5 @@
 package org.levelp.model;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +11,6 @@ import ru.levelup.TestConfiguration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import static org.junit.Assert.*;
 
@@ -23,6 +21,7 @@ public class UsersDAOTest {
     private EntityManagerFactory factory;
     @Autowired
     private EntityManager manager;
+    @Autowired
     private UsersDAO usersDAO;
     private final String userNoAdmin = "testuser1";
     private final String password = "password1";

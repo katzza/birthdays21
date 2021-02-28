@@ -1,6 +1,6 @@
 package ru.levelup;
 
-import org.levelp.web.AppJPAConfiguration;
+import org.level.web.AppJPAConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
