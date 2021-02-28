@@ -3,11 +3,15 @@ package org.levelp.model;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Repository
 public class BirthadayChildsDAO {
     private EntityManager manager;
 
+    @Autowired
     public BirthadayChildsDAO(EntityManager manager) {
         this.manager = manager;
     }
